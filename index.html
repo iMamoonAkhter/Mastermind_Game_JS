@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<head>
+  <title>Mastermind</title>
+  <link rel="stylesheet" href="main.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="app.js"></script>
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+    crossorigin="anonymous"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
+</head>
+
+<body>
+  <div class="alert alert-danger danger" role="alert">
+    Please Input Your Name
+  </div>
+  <div class="success d-none">
+    <div class="success_box">
+      <img src="success.gif" alt="" />
+      <div>
+        <h1>Congratulation!</h1>
+        <h2>You have won</h2>
+      </div>
+    </div>
+  </div>
+  <div class="Rules" style="display: none">
+    <h1 style="color: white; z-index: 1; margin-left: 2vw">
+      <span class="close" onclick="closeRules()" style="cursor: pointer"
+        >X
+      </span>
+      Rules of Mastermind Game
+    </h1>
+    <ul class="mouseover">
+      <li>
+        The game is played with a decoding board consisting of a hidden code and
+        a series of rows for guesses.
+      </li>
+      <li>
+        The hidden code is composed of four pegs, each of which can be one of
+        six colors: blue, green, red, yellow, orange, or pink.
+      </li>
+      <li>
+        The objective of the game is to guess the exact colors and positions of
+        the four pegs in the hidden code.
+      </li>
+      <li>Players have up to 11 attempts to guess the hidden code.</li>
+      <li>
+        After each guess, the player receives feedback in the form of small
+        pegs:
+        <ul>
+          <li>A red peg indicates a correct color in the correct position.</li>
+          <li>A white peg indicates a correct color in the wrong position.</li>
+          <li>No peg indicates an incorrect color.</li>
+        </ul>
+      </li>
+      <li>
+        The feedback pegs do not correspond to the positions of the guessed
+        pegs; they only indicate how many colors are correct and in the correct
+        or incorrect positions.
+      </li>
+      <li>
+        The game continues until the player guesses the hidden code correctly or
+        runs out of attempts.
+      </li>
+      <li>
+        If the player guesses the code correctly, they win and the hidden code
+        is revealed.
+      </li>
+      <li>
+        If the player does not guess the code within the given attempts, the
+        game is lost and the hidden code is revealed.
+      </li>
+      <li>
+        The game can be played by one player against the computer or by two
+        players taking turns setting and guessing the code.
+      </li>
+    </ul>
+  </div>
+  <nav>
+    <div class="heading">
+      <span class="dot"></span>
+      <h1>Online Game</h1>
+    </div>
+    <div class="rule">
+      <a href="#home" onclick="homePage()" class="btn btn-outline-primary">Home</a>
+      <a href="#about" onclick="aboutPage()" class="btn btn-outline-primary"
+        >About</a
+      >
+      <a
+        href="#playGame"
+        onclick="playGamePage()"
+        class="btn btn-outline-primary"
+        >Play Game</a
+      >
+      <a href="#rule" class="btn btn-outline-primary" onclick="openRule()"
+        >Rules</a
+      >
+      <!-- <button class="btn btn-outline-info" onclick="openRule()">Rules</button> -->
+    </div>
+  </nav>
+  <!-- Home Page -->
+  <section id="home" class="d-block">
+    <div class="heading" style="padding-top: 1vw">
+      <h1>Welcome to MasterMind Game</h1>
+    </div>
+    <div class="intro">
+      <div class="home_intro">
+        <h1><i>Introduction</i></h1>
+        <span class="">
+          Mastermind is a classic code-breaking game where one player sets a
+          secret code, and the other player tries to guess it within a certain
+          number of attempts. The code is a sequence of colored pegs, and after
+          each guess, the code-setter provides feedback indicating how many pegs
+          are the correct color and in the correct position. The challenge is to
+          crack the code using logic and deduction before running out of
+          guesses. It's a fun and engaging game that tests your strategic
+          thinking and problem-solving skills!
+        </span>
+      </div>
+      <div class="home_img">
+        <img
+          src="https://th.bing.com/th/id/OIP.eWOhWiUGbJJHoDaHO-c4UgHaEO?rs=1&pid=ImgDetMain"
+          alt="Mastermind.jpg"
+        />
+      </div>
+    </div>
+
+    <div class="home_playgameButton">
+      <button
+        class="button-36 home_playgameButton_button"
+        onclick="PlayGame()"
+        role="button"
+      >
+        Play Game
+      </button>
+      <p class="home_loading d-none">Loading<span id="loading_span"></span></p>
+    </div>
+  </section>
+
+  <!-- About Page -->
+  <section id="about" class="d-none">
+    <h1 class="text-center mt-2">About</h1>
+    <div class="w-80">
+      <h1><i>Introduction</i></h1>
+      <hr />
+      <p>
+        Mastermind is a classic board game of logic and deduction. It was
+        invented in 1970 by Mordecai Meirowitz, an Israeli postmaster and
+        telecommunications expert. The game challenges players to crack a hidden
+        code, typically consisting of a sequence of colored pegs, using
+        deduction and logic within a limited number of guesses.
+      </p>
+
+      <h1 class="mt-2"><i>History</i></h1>
+      <hr />
+      <p>
+        Mastermind was invented in 1970 by Mordecai Meirowitz, an Israeli
+        postmaster and telecommunications expert. After presenting the idea to
+        major toy companies and showing it at the Nuremberg International Toy
+        Fair, it was picked up by a plastics company, Invicta Plastics, based
+        near Leicester, UK. Invicta purchased all the rights to the game and the
+        founder, Edward Jones-Fenleigh, refined the game further. It was
+        released in 1971–2.
+        <br />
+        The game is based on a paper and pencil game called Bulls and Cows. A
+        computer adaptation was run in the 1960s on Cambridge University’s Titan
+        computer system, where it was called 'MOO'. This version was written by
+        Frank King. Other versions were written for the TSS/8 time sharing
+        system by J.S. Felton, for Unix by Ken Thompson, and for the Multics
+        system at MIT by Jerrold Grochow.
+        <br />
+        Since 1971, the rights to Mastermind have been held by Invicta Plastics.
+        (Invicta always named the game Master Mind.) They originally
+        manufactured it themselves, though they have since licensed its
+        manufacture to Hasbro worldwide, with the exception of Pressman Toys and
+        Orda Industries who have the manufacturing rights to the United States
+        and Israel, respectively. Chieftain Products acquired the rights to
+        manufacture in Canada in 1972, though they went out of business in 1996.
+        <br />
+        Starting in 1973, the game box featured a photograph of a man in a suit
+        jacket seated in the foreground, with a young woman standing behind him.
+        The two amateur models (Bill Woodward and Cecilia Fung) reunited in June
+        2003 to pose for another publicity photo.
+        <br />
+      </p>
+
+      <div class="flex justify-space align-center">
+        <h1 class="">
+          Invicta Electronic Master <br />
+          Mind game
+        </h1>
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Invicta_Electronic_Master_Mind_Game.jpg/330px-Invicta_Electronic_Master_Mind_Game.jpg"
+          alt=""
+        />
+      </div>
+
+      <div>
+        <h1>GamePlay Rules</h1>
+        <hr />
+
+        <p>The game is played using:</p>
+        <ul>
+          <li>
+            A decoding board, with a shield at one end covering a row of four
+            large holes, and twelve (or ten, or eight, or six) additional rows
+            containing four large holes next to a set of four small holes;
+          </li>
+          <li>
+            Code pegs of six different colors (or more; see Variations below),
+            with round heads, which will be placed in the large holes on the
+            board; and
+          </li>
+          <li>
+            Key pegs, some colored (red in the image, though often black) and
+            some white, which are flat-headed and smaller than the code pegs;
+            they will be placed in the small holes on the board.
+          </li>
+        </ul>
+        <br />
+        <p>
+          The two players decide in advance how many games they will play, which
+          must be an even number. One player becomes the codemaker, the other
+          the codebreaker. The codemaker chooses a pattern of four code pegs.
+          Players decide in advance whether duplicates and blanks are allowed.
+          If so, the codemaker may choose up to four same-colored code pegs or
+          four blanks. If blanks are not allowed in the code, the codebreaker
+          may not use blanks in their guesses. The codemaker places the chosen
+          pattern in the four holes covered by the shield, visible to the
+          codemaker but not to the codebreaker.
+        </p>
+        <br />
+        <p>
+          The codebreaker tries to guess the pattern, in both order and color,
+          within eight to twelve turns. Each guess is made by placing a row of
+          code pegs on the decoding board. Once placed, the codemaker provides
+          feedback by placing from zero to four key pegs in the small holes of
+          the row with the guess. A colored key peg is placed for each code peg
+          from the guess which is correct in both color and position. A white
+          key peg indicates a code peg that belongs in the solution, but is
+          incorrectly positioned.
+        </p>
+        <br />
+        <p>
+          If there are duplicate colors in the guess, they cannot all be awarded
+          a key peg unless they correspond to the same number of duplicate
+          colors in the hidden code. For example, if the hidden code is
+          red-red-blue-blue and the codebreaker guesses red-red-red-blue, the
+          codemaker will award three colored key pegs for the first two reds and
+          the blue, but nothing for the third red. No indication is given of the
+          fact that the code also includes a second blue.
+        </p>
+        <br />
+        <p>
+          Once feedback is provided, another guess is made; guesses and feedback
+          continue to alternate until either the codebreaker guesses correctly,
+          or all rows on the decoding board are full.
+        </p>
+        <br />
+        <p>
+          Traditionally, players can only earn points when playing as the
+          codemaker. The codemaker gets one point for each guess the codebreaker
+          makes. An extra point is earned by the codemaker if the codebreaker is
+          unable to guess the exact pattern within the given number of turns.
+          (An alternative is to score based on the number of key pegs placed.)
+          The winner is the one who has the most points after the agreed-upon
+          number of games are played.
+        </p>
+        <br />
+        <p>Other rules may be specified.</p>
+
+        <br><br>
+        <div  class="text-center mb-5">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/ColorCode.png" alt="">
+        </div>
+    </div>
+    </div>
+  </section>
+
+  <!-- Play Game Page -->
+  <section id="playGame" class="d-none">
+    <div class="starting" id="playGame1">
+      <div class="flex justify-center align-center column">
+        <h1>Let's Play</h1>
+        <div class="startgame flex align-center justify-center bg cursor">
+          <h1>Start Game</h1>
+          <img class="playIcon" src="./playGame.gif" alt="" />
+        </div>
+      </div>
+    </div>
+    <div class="playInfo d-none">
+      <input
+        type="text"
+        required
+        placeholder="Enter Play Name..."
+        id="playerName"
+      />
+      <button class="go" onclick="go_game()">
+        Go <span class="go_anim">→</span>
+      </button>
+    </div>
+
+    <div class="content d-none" style="margin-top: 2vw">
+      <div class="heading">
+        <h1>Mastermind Game</h1>
+      </div>
+      <div class="fullBoard">
+        <div class="board"></div>
+        <div class="pegs"></div>
+      </div>
+      <div class="other">
+        <div class="player">
+          <h1>Player: <span id="player"></span></h1>
+        </div>
+        <div class="code">
+          <div class="secretColor" id="secretColor1"></div>
+          <div class="secretColor" id="secretColor2"></div>
+          <div class="secretColor" id="secretColor3"></div>
+          <div class="secretColor" id="secretColor4"></div>
+        </div>
+        <div class="colorBoard">
+          <div class="color" id="blue"></div>
+          <div class="color" id="green"></div>
+          <div class="color" id="red"></div>
+          <div class="color" id="yellow"></div>
+          <div class="color" id="orange"></div>
+          <div class="color" id="pink"></div>
+        </div>
+        <div class="currentColor"></div>
+        <div class="submit">
+          <a href="#" class="btn41-43 btn-43"> Check </a>
+          <button class="exit_button btn btn-secondary">Exit Game</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Rule Page -->
+  <section id="rule" class="d-none">
+    <h1>Rule</h1>
+  </section>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h2>Mastermind Game</h2>
+        <p>
+          Mastermind is a classic code-breaking game that tests your logic and
+          deduction skills.
+        </p>
+      </div>
+      <div class="footer-section">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#playGame">Play Game</a></li>
+          <li><a href="#rule">Rules</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <img
+          src="https://www.wikihow.com/images/2/24/Play-Mastermind-Step-15.jpg"
+          alt="Mastermind Image"
+        />
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2024 Mastermind Game. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"
+  ></script>
+</body>
